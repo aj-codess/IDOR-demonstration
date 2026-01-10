@@ -6,7 +6,7 @@ const auth = express.Router();
 auth.use(async (req, res, next) => {
   try {
 
-    const authHeader = req.headers["chatauth"] || req.headers["coreauth"];
+    const authHeader = req.headers["auth"];
 
     const tokenFromHeader =
       authHeader && authHeader.startsWith("Bearer ")

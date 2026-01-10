@@ -5,7 +5,7 @@ const login_or_signup = async (req,res) => {
     try{
 
         let AT;
-        const {email,password} = req.body();
+        const {email,password} = req.body;
 
          if (!email || !password) {
             return res.status(400).json({ error: "Email and password required" });
@@ -65,7 +65,7 @@ const login_or_signup = async (req,res) => {
 
     } catch(error){
     console.error({
-      system: "Error Logging out User",
+      system: "Error Logging In User",
       name: error.name,
       message: error.message,
       stack: error.stack,
@@ -75,7 +75,7 @@ const login_or_signup = async (req,res) => {
 
     return res.status(500).json({
       status: false,
-      message: "Unable to Logout",
+      message: "Unable to login",
     });
 
     }
@@ -85,8 +85,12 @@ const login_or_signup = async (req,res) => {
 const logout = (req,res) => {
     try{
 
-        req.session.destroy();
-        res.redirect("/auth/login");
+      res.setHeader("auth", ` `);
+
+        return res.status(200).json({
+          status:true,
+          message:"Logged out successfully"
+        });
 
     } catch(error){
 

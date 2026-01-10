@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 
 import auth_helper from "./src/services/auth_helper.js";
 import auth from "./src/middleware/auth.js";
-import logRoutes from "./src/routes/logRoutes.js";
+import logRouter from "./src/routes/logRoutes.js";
 import documentRoutes from "./src/routes/documentRoutes.js";
 import db from "./src/config/db.js";
 
@@ -14,7 +14,7 @@ auth_helper.writePublicPrivate();
 auth_helper.loadKeyToMemory();
 db.initDB();
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 const app = express();
 
@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser(process.env.SECRET_KEY));
 
-app.use("/auth", logRoutes);
+app.use("/auth", logRouter);
 
 app.use("/",auth);
 

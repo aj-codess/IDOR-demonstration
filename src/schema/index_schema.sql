@@ -16,5 +16,5 @@ CREATE TABLE IF NOT EXISTS vulnerable_dms.documents (
     title VARCHAR(255),
     filename VARCHAR(255),
     file_path TEXT NOT NULL,
-    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMPls
 );

@@ -32,13 +32,13 @@ documentRouter.post("/upload", upload_helper.single("document"), (req, res) => {
 
 
 /* DELETE DOCUMENT (IDOR VULNERABLE) */
-documentRouter.get("/delete_document", (req, res) => {
+documentRouter.delete("/delete_document", (req, res) => {
   documentController.delete_document(req,res);
 });
 
 
 documentRouter.get("/dashboard", (req, res) => {
-    
+    documentController.get_dashboard(req,res);
 });
 
 
