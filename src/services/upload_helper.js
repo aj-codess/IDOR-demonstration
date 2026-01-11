@@ -1,5 +1,9 @@
 import multer from "multer";
-import path from "path";
+import path from "path"
+
+
+//log the uploads directory path
+
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -11,5 +15,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+
+
 
 export default upload;

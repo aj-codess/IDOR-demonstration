@@ -21,21 +21,16 @@ documentRouter.get("/view_document", (req, res) => {
 });
 
 
-
-
 /* UPLOAD DOCUMENT */
 documentRouter.post("/upload", upload_helper.single("document"), (req, res) => {
-  documentController.upload_document(req,res);
+  documentController.upload_document(req,res);  
 });
-
-
 
 
 /* DELETE DOCUMENT (IDOR VULNERABLE) */
 documentRouter.delete("/delete_document", (req, res) => {
   documentController.delete_document(req,res);
 });
-
 
 documentRouter.get("/dashboard", (req, res) => {
     documentController.get_dashboard(req,res);
