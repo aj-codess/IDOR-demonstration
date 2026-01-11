@@ -8,11 +8,8 @@ auth.use(async (req, res, next) => {
 
     const authHeader = req.headers["auth"];
 
-    const tokenFromHeader =
-      authHeader && authHeader.startsWith("Bearer ")
-        ? authHeader.split(" ")[1]
-        : null;
 
+    const tokenFromHeader = authHeader && authHeader.startsWith("Bearer ") ? authHeader.split(" ")[1]: null;
 
     const tokenFromCookie = req.cookies?.chatAuth;
 
@@ -22,6 +19,7 @@ auth.use(async (req, res, next) => {
       console.log("no token Provided");
       return res.status(401).json({ status: false, message: "No token provided" });
     }
+   
 
     const decode = await auth_helper.verifyToken(token);
 
