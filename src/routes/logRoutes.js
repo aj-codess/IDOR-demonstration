@@ -3,7 +3,7 @@ import logController from "./../controller/logController.js";
 
 const logRouter = express.Router();
 
-/* LOGIN */
+/* LOGIN  AND SIGNUP */
 logRouter.post("/login", (req, res) => {
     logController.login_or_signup(req,res);
 });
@@ -12,5 +12,9 @@ logRouter.post("/login", (req, res) => {
 logRouter.get("/logout", (req, res) => {
     logController.logout(req,res);
 });
+
+
+
+
 
 export default logRouter;

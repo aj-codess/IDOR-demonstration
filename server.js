@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import auth_helper from "./src/services/auth_helper.js";
 import auth from "./src/middleware/auth.js";
@@ -16,11 +17,20 @@ db.initDB();
 
 const PORT = 3000;
 
+
+
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser(process.env.SECRET_KEY));
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true,
+  exposedHeaders: ["auth"]
+}));
+
 
 app.use("/auth", logRouter);
 
