@@ -11,33 +11,38 @@ import db from "./src/config/db.js";
 
 dotenv.config();
 
+// Init crypto + DB
 auth_helper.writePublicPrivate();
 auth_helper.loadKeyToMemory();
 db.initDB();
 
 const PORT = 3000;
-
-
-
 const app = express();
 
+// Middleware
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.SECRET_KEY));
 
-app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true,
-  exposedHeaders: ["auth"]
-}));
+const allowedOrigins = [
+  "http://localhost:5173", 
+  "http://localhost:4000"
+];
 
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+    exposedHeaders: ["auth"],
+  })
+);
 
+// Routes
 app.use("/auth", logRouter);
-
-app.use("/",auth);
-
+app.use("/", auth);
 app.use("/docs", documentRoutes);
 
+// START HTTP SERVER
 app.listen(PORT, () => {
   console.log("Vulnerable DMS running on http://localhost:3000");
 });
